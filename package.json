@@ -1,0 +1,50 @@
+{
+  "name": "ithub-demoexam-2027",
+  "private": true,
+  "type": "module",
+  "imports": {
+    "#/*": "./src/*"
+  },
+  "scripts": {
+    "dev": "dotenv -e .env -- vite --port 3000",
+    "generate-routes": "tsr generate",
+    "build": "vite build",
+    "preview": "dotenv -e .env -- vite preview --port 4173",
+    "design:export": "dotenv -e .env -- tsx scripts/export-design.mjs",
+    "post-cta-init": "npx -y create-db@latest --user-agent tanstack/tsrouter",
+    "db:generate": "dotenv -e .env -- prisma generate",
+    "db:push": "dotenv -e .env -- prisma db push",
+    "db:seed": "dotenv -e .env -- prisma db seed"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.4.2",
+    "@prisma/client": "^7.4.2",
+    "@tanstack/react-devtools": "latest",
+    "@tanstack/react-router": "latest",
+    "@tanstack/react-router-devtools": "latest",
+    "@tanstack/react-start": "latest",
+    "prisma": "^7.4.2",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@tanstack/devtools-vite": "latest",
+    "@tanstack/router-cli": "^1.132.0",
+    "@types/node": "^22.10.2",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-react": "^6.0.1",
+    "dotenv-cli": "^11.0.0",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.2",
+    "vite": "^8.0.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "lightningcss",
+      "@prisma/engines",
+      "prisma"
+    ]
+  }
+}

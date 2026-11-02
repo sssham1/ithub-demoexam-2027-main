@@ -1,0 +1,42 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Status {
+  NEW
+  IN_PROGRESS
+  DONE
+}
+
+enum Payment {
+  CASH
+  PHONE_TRANSFER
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  login     String   @unique
+  password  String
+  fullname  String
+  phone     String
+  email     String
+  createdAt DateTime @default(now())
+  entries   Entry[]
+}
+
+model Entry {
+  id        Int      @id @default(autoincrement())
+  course    String
+  startDate DateTime @db.Date
+  payment   Payment
+  status    Status   @default(NEW)
+  review    String?
+  createdAt DateTime @default(now())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
